@@ -1,4 +1,8 @@
 #!/usr/bin/env bash
+# bin/release <build-dir>
 
-echo "--- {}"
-exit 0
+cat << EOF
+addons: []
+default_process_types:
+  web: cd $APP_BASE && npm start
+EOF

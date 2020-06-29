@@ -15,15 +15,13 @@ fi
 APP_BASE="$(cat "${ENV_DIR}/APP_BASE")"
 
 (
-    mv "${BUILD_DIR}/${APP_BASE}" "${STAGE}" &&
-    rm -rf "${BUILD_DIR}" &&
-    mv "${STAGE}/$(basename "$APP_BASE")" "${BUILD_DIR}"
+    cd "${BUILD_DIR}/${APP_BASE}" && npm run build
 )
 
 if [ $? -ne 0 ]; then
-    echo "FAILED to copy directory into place" | indent
+    echo "FAILED to build" | indent
     exit 1
 fi
 
-echo "Copied ${APP_BASE} to root of app successfully" | indent
+echo "Built ${APP_BASE} successfully" | indent
 
